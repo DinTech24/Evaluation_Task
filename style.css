@@ -1,0 +1,48 @@
+
+.head{
+    font-size: 22px;
+    margin-bottom: 2vw;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.eachDivsion{
+    height: 60px;
+    border-top: 1px solid rgb(214, 214, 214);
+    box-sizing: border-box;
+    font-size: 14px;
+    padding-left: 3vw;
+}
+
+.eachInnDivsion{
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.mainDiv{
+    margin-left: 1vw;
+    margin-right: 1vw;
+    position:absolute;
+    width: 98%;
+
+}
+
+.timeSpan{
+    font-size: 14px;
+}
+.newDiv{
+    border-left: 3px solid rgb(75, 145, 248);
+    background-color: rgb(221, 232, 240);
+    margin-left: 10vw;
+    z-index: 1;
+    position: absolute;
+    width: 90%;
+}
+.breakDiv{
+    background-color: whitesmoke;
+    margin-left: 10vw;
+}
+#timeline{
+    position: relative;
+}
+.overLap{
+    margin-left: 40%;
+}
