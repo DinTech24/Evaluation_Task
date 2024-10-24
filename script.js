@@ -1,5 +1,5 @@
 var data = [{
-    start: 0,
+    start:0,
     duration: 15,
     title: "Exercise"
 }, {
@@ -32,64 +32,58 @@ var data = [{
     title: "Follow up with designer"
 }, {
     start: 400,
-    duration: 30,
+    duration: 20,
     title: "Push up branch"
 }
 ];
 
-
-// var hour = [];
-// var minute = [];
-var duration_array = [];
-var start_array = [];
-var startData =[];
-var s = 8;
-for(let i in data){
-    duration_array.push(data[i].duration +"px");
-    start_array.push(data[i].start +"px");
-    startData.push(data[i].start);
-    var start_time = data[i].start;
-    var duration = data[i].duration;
-    var event = data[i].title;
-    // if(start_time>=60){
-    //     var hours = Math.floor(start_time/60);
-    //     hour.push(hours + 8);
-    //     var s = s + hours;
-    //     var m = start_time - (60 * hours);
-    //     minute.push(m);
-    // }
-    // else{
-    //     hour.push(s);
-    //     minute.push(start_time);
-    // }
-}
-// var starting_time = [];
-// for(let i in hour){
-//     starting_time.push(hour[i]+":"+minute[i])
-//     console.log(hour[i]+":"+minute[i]);
-// }
+let start;
+let duration=0;
+let dataArray=[];
+let temp = true;
 
 for(i=0;i<data.length;i++){
-    let newDivision = document.createElement("div");
-    newDivision.style.height = duration_array[i];
-    newDivision.style.top= start_array[i];
-    newDivision.innerText = data[i].title;
-    newDivision.classList.add("newDiv");
-    if(i==data.length-1 && startData[i]-startData[i-1]<31){
-        newDivision.style.marginLeft="50%";
-        newDivision.style.width="50%";
-        newDivision.style.zIndex="2";
-        newDivision.style.borderBottom = "5px solid white";
+    for(j=i+1;j<data.length-1;j++){
+        if(data[j].start>data[j+1].start){
+            var tempvalue=data[j];
+            data[j]=data[j+1];
+            data[j+1]=tempValue;
+        }
     }
-    if((startData[i+1]-startData[i])<25){
-         newDivision.style.marginLeft="50%";
-         newDivision.style.width="50%";
-         newDivision.style.zIndex="2";
-         newDivision.style.borderBottom = "5px solid white";
-    }
-    document.getElementById("timeline").appendChild(newDivision);
 }
 
-// startData.sort((n1,n2)=>n1-n2);
-// console.log(startData)
-
+for(i=0;i<data.length-1;i++){  
+    let difference = data[i+1].start-data[i].start;
+    if(data[i].duration>difference){
+        dataArray.push(i);
+        dataArray.push(i+1);
+    }
+}
+for( i=0;i<data.length;i++){      
+    let newDiv=document.createElement("div");
+    if(dataArray.includes(i)){
+        if(temp == false){
+            temp = true;
+        }
+        else{
+            newDiv.style.width="45%";
+            newDiv.style.left="45%";
+            newDiv.style.zIndex="2";
+            newDiv.style.borderBottom="2px solid white";
+            temp = false;
+        }       
+    }
+    else{
+        temp = true;
+    }
+    duration=data[i].duration + "px";
+    start=data[i].start + "px";
+    newDiv.style.height=duration ;
+    newDiv.style.top=start ;
+    newDiv.innerHTML=data[i].title;
+    newDiv.classList.add("newDiv")
+    document.getElementById("timeline").appendChild(newDiv);
+}
+    
+   
+   
